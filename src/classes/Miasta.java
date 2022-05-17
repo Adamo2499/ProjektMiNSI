@@ -3,7 +3,7 @@ package classes;
 public class Miasta {
 
     final public static String[] MIASTA = 
-    {"Gdańsk",	"Warszawa",	"Poznań",	"Wrocław",	"Kraków",	"Gdynia",	"Sopot",	"Radom",	"Grudziądz",	"Toruń",	"Bydgoszcz",	"Katowice",	"Lublin",	"Łódź",	"Białystok",	"Olsztyn",	"Szczecin",	"Rzeszów",	"Kielce",	"Zakopane",	"Kołobrzeg",	"Łomża",	"Kalisz",	"Nowy", "Sącz",	"Przemyśl",	"Radom",	"Opole",	"Gniezno",	"Giżycko"};
+    {"Gdańsk",	"Warszawa",	"Poznań",	"Wrocław",	"Kraków",	"Gdynia",	"Sopot",	"Radom",	"Grudziądz",	"Toruń",	"Bydgoszcz",	"Katowice",	"Lublin",	"Łódź",	"Białystok",	"Olsztyn",	"Szczecin",	"Rzeszów",	"Kielce",	"Zakopane",	"Kołobrzeg",	"Łomża",	"Kalisz",	"Nowy", "Sącz",	"Przemyśl",	"Piła",	"Opole",	"Gniezno",	"Giżycko"};
     
 
     final public static double[][] ODLEGLOSCI= { 
