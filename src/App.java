@@ -1,4 +1,6 @@
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Random;
 
 import classes.Miasta;
 import classes.Pliki;
@@ -11,8 +13,8 @@ public class App {
         // Pliki.zapiszPlikWynikowy("");
         // Pliki.odczytajPlik("wyniki.txt");
 
-        ArrayList<double[]> populacjaTras = AE.utworzPopulacje();
-        AE.WypiszInfoOPopulacji(populacjaTras);
-
+        AE.GenerujLosowaPopulację(50, 30);
+        AE.WypiszInfoOPopulacji();
+        
     }
 }
