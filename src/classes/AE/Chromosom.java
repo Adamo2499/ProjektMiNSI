@@ -1,25 +1,25 @@
 package classes.AE;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Random;
-
 import classes.Miasta;
 
 public class Chromosom {
-    double przystosowanieChromosomu;
+    //Chromosom jego tworzenie i parametry 
+
+    public double przystosowanieChromosomu;
     int[] geny;
     public static ArrayList<Chromosom> populacja = new ArrayList<Chromosom>();
 
     public Chromosom(int iloscgenow){//konstruktor chromosomu wykorzystujący ilosc genów jako argument
         this.geny = GenerowanieGenow(iloscgenow);
-        this.WyznaczPrzystosowanieChromosomu();
+        this.WyznaczPrzystosowanieChromosomu(); //chromosom zaraz po poznaniu swojego zestawu genów jest w stanie wyznaczyć swoje przystosowanie
         populacja.add(this);
     }
 
     public Chromosom(int[] geny){//konstruktor chromosomu wykorzystujący gotowy zestaw genów jako argument
         this.geny = geny;
-        this.WyznaczPrzystosowanieChromosomu();
+        this.WyznaczPrzystosowanieChromosomu();//chromosom zaraz po poznaniu swojego zestawu genów jest w stanie wyznaczyć swoje przystosowanie
         populacja.add(this);
     }
 

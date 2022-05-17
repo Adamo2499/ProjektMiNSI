@@ -8,6 +8,8 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 public class Pliki {
+    //zapisywanie do pliku i wyciąganie rzeczy z pliku 
+
     public static void odczytajPlik(String sciezkaDoPliku) throws FileNotFoundException, IOException {
         File plikWejsciowy = new File(sciezkaDoPliku);
         FileReader odczytajPlik = new FileReader(plikWejsciowy);

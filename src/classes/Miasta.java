@@ -1,6 +1,7 @@
 package classes;
-//model na którym operuje algorytm
+
 public class Miasta {
+    //model na którym operuje algorytm
 
     final public static String[] MIASTA = 
     {"Gdańsk",	"Warszawa",	"Poznań",	"Wrocław",	"Kraków",	"Gdynia",	"Sopot",	"Radom",	"Grudziądz",	"Toruń",	"Bydgoszcz",	"Katowice",	"Lublin",	"Łódź",	"Białystok",	"Olsztyn",	"Szczecin",	"Rzeszów",	"Kielce",	"Zakopane",	"Kołobrzeg",	"Łomża",	"Kalisz",	"Nowy Sącz",	"Przemyśl",	"Piła",	"Opole",	"Gniezno",	"Giżycko", "Ostróda"};
@@ -38,7 +39,7 @@ public class Miasta {
 
     };
     
-    public static void DrukujOdleglosciMIASTA(){
+    public static void DrukujOdleglosciMIASTA(){// do debugowania
         for (int i = 0; i < ODLEGLOSCI.length-1; i++) {
             for (int j = 0; j < ODLEGLOSCI[0].length-1; j++) {
                 System.out.println("od "+MIASTA[i]+" do "+MIASTA[j]+" jest "+ODLEGLOSCI[i][j]+"km");

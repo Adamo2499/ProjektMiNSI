@@ -1,18 +1,7 @@
 package classes.AE;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Random;
-
-import classes.Miasta;
-import classes.Pliki;
-import classes.AE.Chromosom;
-
 public class AE {
-
-    final static int wielkoscPopulacji = 20;
-    final static int iloscGenow = 30;
-    static int zmiennaWielkoscPopulacji = wielkoscPopulacji;
+    //wszystko co związane z tworzeniem i zarządzaniem chromosomami (Czyli algorytm ewolucyjny)
 
 
     public static void GenerujLosowaPopulację(int wielkoscPopulacji, int iloscGenow){//funkcja tworzy nową losową populację 
@@ -21,7 +10,7 @@ public class AE {
         }
     }
 
-    public static double WyznaczOptimumPopulacji(){
+    public static double WyznaczOptimumPopulacji(){//wyznacza najmniejszą wartość przystosowania w całej populacji
         double optimumPopulacji = Double.MAX_VALUE, wartoscFP=0.0;
         for (int i = 0; i < Chromosom.populacja.size(); i++) {
             wartoscFP = Chromosom.populacja.get(i).przystosowanieChromosomu;
@@ -41,6 +30,10 @@ public class AE {
         System.out.println("Optimum funkcji: "+WyznaczOptimumPopulacji());
     }
     
+
+    //gen = miasto
+    //Chromosom = droga do celu
+
 
     // populacja to największa ilość trans między miastami (na start 20, a później do zmiany)
     // chromosom[iloscmiast] -> trasa między miastami
