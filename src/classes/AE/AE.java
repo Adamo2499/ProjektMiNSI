@@ -3,13 +3,16 @@ package classes.AE;
 import java.util.ArrayList;
 import java.util.Random;
 
-import classes.Miasta;
+import classes.AE.Chromosom;
 
 public class AE {
 
     final static int MAXILOSCMIAST = 30;
     final static int wielkoscPopulacji = 20;
     static int zmiennaWielkoscPopulacji = wielkoscPopulacji;
+
+    
+
     // populacja to największa ilość trans między miastami (na start 20, a później do zmiany)
     // chromosom[iloscmiast] -> trasa między miastami
     // na chromosom składa się liczba genów równa ilości miast
