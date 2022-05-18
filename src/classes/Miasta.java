@@ -38,6 +38,31 @@ public class Miasta {
         {113.801,	177.851,	249.624,	350.708,	404.829,	129.549,	123.825,	266.721,	83.298, 	118.641,	145.216,	393.441,	327.293,	217.058,	221.078,	34.846, 	355.815,	433.767,	319.794,	489.886,	291.831,	149.973,	251.687,	457.984,	477.135,	222.260,	363.636,	205.084,	123.892,	 0}
 
     };
+    public static String[] miastaUzytkownika={};
+    public static double[][] odleglosciUzytkownika={};
+
+
+    public Miasta(){//Pusty konstruktor oznacza ustawienia domyślne
+        miastaUzytkownika=MIASTA;
+        odleglosciUzytkownika=ODLEGLOSCI;
+    }
+
+    public Miasta(String listaMiastWPostaciStringa){
+        // Przykładowy input :     1,2,20,4,7
+        // Spostrzeżenie: String można zamienić na listę elementów już przy odczycie z pliku 
+
+        //1. Rodzielamy string 
+        //2. Tworzymy listę miast 
+        //3. tworzymy 2 puste tabelice  tymczasoweMiastaUzytkownika i tymczasoweOdleglosciUzytkownika
+        //4. Jakoś przepisujemy wartości z MIASTA i ODLEGŁOŚCI do tych tablic 
+        //5. ustawiamy miasta użytkownika
+        //           miastaUzytkownika=tymczasoweMiastaUzytkownika;
+        //           odleglosciUzytkownika=tymczasoweOdleglosciUzytkownika;
+
+
+
+    }
+
     
     public static void DrukujOdleglosciMIASTA(){// do debugowania
         for (int i = 0; i < ODLEGLOSCI.length-1; i++) {

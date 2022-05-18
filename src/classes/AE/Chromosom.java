@@ -13,13 +13,13 @@ public class Chromosom {
 
     public Chromosom(int iloscgenow){//konstruktor chromosomu wykorzystujący ilosc genów jako argument
         this.geny = GenerowanieGenow(iloscgenow);
-        this.WyznaczPrzystosowanieChromosomu(); //chromosom zaraz po poznaniu swojego zestawu genów jest w stanie wyznaczyć swoje przystosowanie
+        this.WyznaczPrzystosowanieChromosomu(); //chromosom zaraz po poznaniu swojego zestawu genów jest w stanie wyznaczyć swoje przystosowanie więc to robi
         populacja.add(this);
     }
 
     public Chromosom(int[] geny){//konstruktor chromosomu wykorzystujący gotowy zestaw genów jako argument
         this.geny = geny;
-        this.WyznaczPrzystosowanieChromosomu();//chromosom zaraz po poznaniu swojego zestawu genów jest w stanie wyznaczyć swoje przystosowanie
+        this.WyznaczPrzystosowanieChromosomu();//chromosom zaraz po poznaniu swojego zestawu genów jest w stanie wyznaczyć swoje przystosowanie więc to robi
         populacja.add(this);
     }
 
@@ -42,10 +42,11 @@ public class Chromosom {
 
     void WyznaczPrzystosowanieChromosomu(){//przeniosłem z AE 
         // Chromosom zaraz po tym jak "pozna swój zestaw genów" w sumie może określić swoje przystosowanie
-        // Dlatego wyznacznaie przystosowanie znajduje się w konstruktorze
+        // Dlatego wyznacznaie przystosowania znajduje się już w konstruktorze
+        // Jednak w przypadku w którym modyfikujemy zestaw genów bez tworzenia nowego chromosomu będzie trzeba pamiętać aby tą funkcję wywołać 
         double wartoscFunkcjiPrzystosowania = 0.0;
         for (int i = 1; i < geny.length; i++) {
-            wartoscFunkcjiPrzystosowania=Miasta.ODLEGLOSCI[geny[i-1]][geny[i]]; 
+            wartoscFunkcjiPrzystosowania=Miasta.odleglosciUzytkownika[geny[i-1]][geny[i]]; 
         }
         przystosowanieChromosomu=wartoscFunkcjiPrzystosowania;
     }

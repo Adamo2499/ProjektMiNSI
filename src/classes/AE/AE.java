@@ -4,9 +4,29 @@ public class AE {
     //wszystko co związane z tworzeniem i zarządzaniem chromosomami (Czyli algorytm ewolucyjny)
 
 
+    //Adnotacja: Tworzenie nowej populacji (krzyżowanie, ruletka, mutacje itp)
+
+    //W przypadku np krzyżowania chcemy stworzyć nową populację w oparciu o starą
+    //W tym przypadku najpierw trzeba przepisać starą populację na inny array i wyczyścić array w chromosomie, aby zrobić miejsce dla nowej populacji
+    //Można wymyślić inne rozwiązanie, ale zaletą tego jest fakt że po wykonaniu funkcji operującej na populacji nie tworzymy nowych zmiennych(poza funkcją)
+    
+    //tj w kodzie to wygląda mniej więcej tak:
+
+    //public static ArrayList<Chromosom> StaraPopulacja = Chromosom.populacja;
+    //Chromosom.populacja.clear();
+    
+    //for(i=0;i<StaraPopulacja.size();i++){
+    //  int[] NoweGeny= new int[StaraPopulacja.get(0).geny.length];
+    //  operacje na chromosomie
+    //  new Chromosom(NoweGeny); <--- można stworzyć nowy chromosom podając jako argument tablicę genów 
+    //                                z  racji na fakt jak napisany jest konstruktor nowy chromosom jest automatycznie wpisywany do populacji 
+    //                                i natychmiastowo obliczane jest jego przystosowanie
+    //}
+
+
     public static void GenerujLosowaPopulację(int wielkoscPopulacji, int iloscGenow){//funkcja tworzy nową losową populację 
         for (int i = 0; i < wielkoscPopulacji; i++) {
-            new Chromosom(iloscGenow);    
+            new Chromosom(iloscGenow);         
         }
     }
 
