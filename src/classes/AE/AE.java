@@ -23,6 +23,49 @@ public class AE {
     //                                i natychmiastowo obliczane jest jego przystosowanie
     //}
 
+    public static void KrzyzujChromosomy(Chromosom chromosom1, Chromosom chromosom2){
+        
+        int dlugoscChromosomu=chromosom1.geny.length/2;
+        //wyznaczanie indeksu pocżatkowego i końcowego
+        int IndexPoczatekowy=(int)(Math.random()*(dlugoscChromosomu));
+        int IndexKoncowy=(int)(Math.random()*(dlugoscChromosomu))+IndexPoczatekowy;
+        // System.out.println("Początek: "+IndexPoczatekowy+" Koniec: "+IndexKoncowy);// debug 
+        //przepisywanie 
+
+
+
+
+        int indexodwzorowania=0;
+        boolean ZnajdujeSięWCiaguOdwzorowania=false;
+        for (int i = 0; i < dlugoscChromosomu; i++) {
+             if((i>=IndexPoczatekowy)&&(i<=IndexKoncowy)){
+
+                 //ChromosomPMX.arrayChromosomy.get(ChromosomPMX.arrayChromosomy.size()-1).chromosom[i]=this.chromosom[i];   
+             }else{
+                 //sprawdzamy czy element znajduje się w ciągu odwzorowania
+                
+                 for (int j = IndexPoczatekowy; j < IndexKoncowy; j++) {
+                     ZnajdujeSięWCiaguOdwzorowania=false;
+
+                     if(chromosom1.geny[i]==chromosom2.geny[j]){
+                         ZnajdujeSięWCiaguOdwzorowania=true;
+                         indexodwzorowania=j;
+                     }
+                 }
+
+        //         //jeżeli tak to odwzorowujemy
+        //         //jeżeli nie to przepisujemy
+                
+                //  if (ZnajdujeSięWCiaguOdwzorowania) {
+                //      ChromosomPMX.arrayChromosomy.get(ChromosomPMX.arrayChromosomy.size()-1).chromosom[i]=drugirodzic.chromosom[indexodwzorowania];
+                //  }else{
+                //      ChromosomPMX.arrayChromosomy.get(ChromosomPMX.arrayChromosomy.size()-1).chromosom[i]=drugirodzic.chromosom[i];
+                //  }
+                
+             }     
+         }
+
+    }
 
     public static void GenerujLosowaPopulację(int wielkoscPopulacji, int iloscGenow){//funkcja tworzy nową losową populację 
         for (int i = 0; i < wielkoscPopulacji; i++) {
