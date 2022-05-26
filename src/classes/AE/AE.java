@@ -23,49 +23,7 @@ public class AE {
     //                                i natychmiastowo obliczane jest jego przystosowanie
     //}
 
-    public static void KrzyzujChromosomy(Chromosom chromosom1, Chromosom chromosom2){
-        
-        int dlugoscChromosomu=chromosom1.geny.length/2;
-        //wyznaczanie indeksu pocżatkowego i końcowego
-        int IndexPoczatekowy=(int)(Math.random()*(dlugoscChromosomu));
-        int IndexKoncowy=(int)(Math.random()*(dlugoscChromosomu))+IndexPoczatekowy;
-        // System.out.println("Początek: "+IndexPoczatekowy+" Koniec: "+IndexKoncowy);// debug 
-        //przepisywanie 
 
-
-
-
-        int indexodwzorowania=0;
-        boolean ZnajdujeSięWCiaguOdwzorowania=false;
-        for (int i = 0; i < dlugoscChromosomu; i++) {
-             if((i>=IndexPoczatekowy)&&(i<=IndexKoncowy)){
-
-                 //ChromosomPMX.arrayChromosomy.get(ChromosomPMX.arrayChromosomy.size()-1).chromosom[i]=this.chromosom[i];   
-             }else{
-                 //sprawdzamy czy element znajduje się w ciągu odwzorowania
-                
-                 for (int j = IndexPoczatekowy; j < IndexKoncowy; j++) {
-                     ZnajdujeSięWCiaguOdwzorowania=false;
-
-                     if(chromosom1.geny[i]==chromosom2.geny[j]){
-                         ZnajdujeSięWCiaguOdwzorowania=true;
-                         indexodwzorowania=j;
-                     }
-                 }
-
-        //         //jeżeli tak to odwzorowujemy
-        //         //jeżeli nie to przepisujemy
-                
-                //  if (ZnajdujeSięWCiaguOdwzorowania) {
-                //      ChromosomPMX.arrayChromosomy.get(ChromosomPMX.arrayChromosomy.size()-1).chromosom[i]=drugirodzic.chromosom[indexodwzorowania];
-                //  }else{
-                //      ChromosomPMX.arrayChromosomy.get(ChromosomPMX.arrayChromosomy.size()-1).chromosom[i]=drugirodzic.chromosom[i];
-                //  }
-                
-             }     
-         }
-
-    }
 
     public static void GenerujLosowaPopulację(int wielkoscPopulacji, int iloscGenow){//funkcja tworzy nową losową populację 
         for (int i = 0; i < wielkoscPopulacji; i++) {
@@ -92,7 +50,67 @@ public class AE {
         }
         System.out.println("Optimum funkcji: "+WyznaczOptimumPopulacji());
     }
+
+
+
+
+
+    public static void KrzyzujChromosomy(Chromosom chromosom1, Chromosom chromosom2){
+        
+        int dlugoscChromosomu=chromosom1.geny.length;
+        int[] geny1=chromosom1.geny;
+        int[] geny2=chromosom2.geny;
+        int[] noweGeny1= new int[geny1.length];
+        int[] noweGeny2= new int[geny2.length];
+
+        //wyznaczanie indeksu pocżatkowego i końcowego
+        int IndexPoczatekowy=(int)(Math.random()*(dlugoscChromosomu/2));
+        int IndexKoncowy=(int)(Math.random()*(dlugoscChromosomu/2))+IndexPoczatekowy;
+        System.out.println("Początek: "+IndexPoczatekowy+" Koniec: "+IndexKoncowy);// debug 
+        //przepisywanie
+        boolean przepisuj= false; 
+        for (int i = 0; i < geny1.length; i++) {
+            //wykrywanie kiedy trzeba przepisywać
+            if((i>=IndexPoczatekowy)&&(i<=IndexKoncowy)){
+                przepisuj=true;
+            }else{
+                przepisuj=false;
+            }
+            //tak wiem że da się w jednej potem się poprawi xDDD
+            if(przepisuj){
+                noweGeny1[i]=geny2[i];
+                noweGeny2[i]=geny1[i];
+            }else{
+                noweGeny1[i]=999;
+                noweGeny2[i]=999;
+            }
+        }
+        przepisuj= false; 
+        for (int i = 0; i < geny1.length; i++) {
+            if(noweGeny1[i]==999){// operacje na nieprzepisanych
+                //sprawdzanie czy liczba przypadkiem nie znajduje się w łańcuchu
+                boolean LiczbaZnajdujeSięWŁańcuchu=false;
+
+                for (int j = 0; j < noweGeny2.length; j++) {
+                    LiczbaZnajdujeSięWŁańcuchu=false;
+                    for (int j2 = 0; j2 < noweGeny2.length; j2++) {
+                        if (noweGeny1[j]==geny1[j2]) {
+                            
+                        }
+                    }
+                    
+                }
+
+            }
+
     
+        }
+
+        new Chromosom(noweGeny1);
+        new Chromosom(noweGeny2);
+
+        //WypiszInfoOPopulacji(); debug
+    }
 
     //gen = miasto
     //Chromosom = droga do celu
