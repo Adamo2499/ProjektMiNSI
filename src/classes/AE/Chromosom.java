@@ -46,9 +46,7 @@ public class Chromosom {
         // Jednak w przypadku w którym modyfikujemy zestaw genów bez tworzenia nowego chromosomu będzie trzeba pamiętać aby tą funkcję wywołać 
         double wartoscFunkcjiPrzystosowania = 0.0;
         for (int i = 1; i < geny.length; i++) {
-            if((geny[i-1]!=999)&&(geny[i]!=999)){//999 pozwala skipnąć (poczebowałem przy pmx wywalę potem)
                 wartoscFunkcjiPrzystosowania=Miasta.ODLEGLOSCI[geny[i-1]][geny[i]]; 
-            }
         }
         przystosowanieChromosomu=wartoscFunkcjiPrzystosowania;
     }

@@ -1,5 +1,7 @@
 package classes.AE;
 
+import java.util.ArrayList;
+
 public class AE {
     //wszystko co związane z tworzeniem i zarządzaniem chromosomami (Czyli algorytm ewolucyjny)
 
@@ -62,48 +64,31 @@ public class AE {
         int[] geny2=chromosom2.geny;
         int[] noweGeny1= new int[geny1.length];
         int[] noweGeny2= new int[geny2.length];
+        ArrayList<Integer> uzyteGeny1 = new ArrayList<Integer>();
+        ArrayList<Integer> uzyteGeny2 = new ArrayList<Integer>();
 
         //wyznaczanie indeksu pocżatkowego i końcowego
         int IndexPoczatekowy=(int)(Math.random()*(dlugoscChromosomu/2));
         int IndexKoncowy=(int)(Math.random()*(dlugoscChromosomu/2))+IndexPoczatekowy;
         System.out.println("Początek: "+IndexPoczatekowy+" Koniec: "+IndexKoncowy);// debug 
         //przepisywanie
-        boolean przepisuj= false; 
         for (int i = 0; i < geny1.length; i++) {
-            //wykrywanie kiedy trzeba przepisywać
             if((i>=IndexPoczatekowy)&&(i<=IndexKoncowy)){
-                przepisuj=true;
-            }else{
-                przepisuj=false;
-            }
-            //tak wiem że da się w jednej potem się poprawi xDDD
-            if(przepisuj){
                 noweGeny1[i]=geny2[i];
+                uzyteGeny1.add(geny2[i]);
                 noweGeny2[i]=geny1[i];
-            }else{
-                noweGeny1[i]=999;
-                noweGeny2[i]=999;
+                uzyteGeny2.add(geny1[i]);
             }
         }
-        przepisuj= false; 
+        //uzupełnianie
+
+
         for (int i = 0; i < geny1.length; i++) {
-            if(noweGeny1[i]==999){// operacje na nieprzepisanych
-                //sprawdzanie czy liczba przypadkiem nie znajduje się w łańcuchu
-                boolean LiczbaZnajdujeSięWŁańcuchu=false;
-
-                for (int j = 0; j < noweGeny2.length; j++) {
-                    LiczbaZnajdujeSięWŁańcuchu=false;
-                    for (int j2 = 0; j2 < noweGeny2.length; j2++) {
-                        if (noweGeny1[j]==geny1[j2]) {
-                            
-                        }
-                    }
-                    
-                }
-
+            if((i>=IndexPoczatekowy)&&(i<=IndexKoncowy)){
+            }else{
+                
             }
-
-    
+            
         }
 
         new Chromosom(noweGeny1);

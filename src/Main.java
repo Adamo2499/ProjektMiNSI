@@ -23,9 +23,7 @@ public class Main {
         //Spostrzeżenie: ilość genów zawsze będzie równa ilości miast co oznacza że można to w przyszłości uprościć tak aby funcja 
         //               GenerujLosowąPopulację() przyjmowała jako argument tylko wielkośc populacji 
         //AE.WypiszInfoOPopulacji();
-
-
-
+        
         //debug PMX
         AE.GenerujLosowaPopulację(2, 10);
         AE.KrzyzujChromosomy(Chromosom.populacja.get(0), Chromosom.populacja.get(1));
