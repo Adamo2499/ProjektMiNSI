@@ -81,14 +81,28 @@ public class AE {
             }
         }
         //uzupełnianie
-
-
         for (int i = 0; i < geny1.length; i++) {
             if((i>=IndexPoczatekowy)&&(i<=IndexKoncowy)){
             }else{
-                
-            }
-            
+                //jeżeli liczba nie występuje na liście liczb użytych to jest wpisywana
+                //jeżeli liczba występuje na liście użytych liczb sprawdzamy odpowiadającą jej liczbę a potem sprawdzamy czy ta znajduje się na liście liczb użytych 
+                //jeżeli tak to sprawdzamy odpowiadającą jej liczbę
+                if(!uzyteGeny1.contains(geny1[i])){
+                    noweGeny1[i]=geny1[i];
+                    uzyteGeny1.add(geny1[i]);
+                }else{
+                   // if (!uzyteGeny1.contains(geny2[i])) {
+                        
+                   // }
+
+                }
+                if(!uzyteGeny2.contains(geny2[i])){
+                    noweGeny2[i]=geny2[i];
+                    uzyteGeny2.add(geny2[i]);
+                }else{
+
+                }
+            } 
         }
 
         new Chromosom(noweGeny1);
