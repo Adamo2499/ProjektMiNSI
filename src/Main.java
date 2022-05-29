@@ -15,9 +15,10 @@ public class Main {
         
         //debug PMX
         AE.GenerujLosowaPopulację(2);
+        AE.KrzyzujChromosomy(Chromosom.populacja.get(0), Chromosom.populacja.get(1));
+        AE.WypiszInfoOPopulacji();
         Chromosom.populacja.get(0).DrukujGeny();
         Chromosom.populacja.get(1).DrukujGeny();
-        AE.KrzyzujChromosomy(Chromosom.populacja.get(0), Chromosom.populacja.get(1));
         Chromosom.populacja.get(2).DrukujGeny();
         Chromosom.populacja.get(3).DrukujGeny();
     }

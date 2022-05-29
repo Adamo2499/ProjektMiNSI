@@ -39,8 +39,9 @@ public class AE {
         ArrayList<Integer> uzyteGeny1 = new ArrayList<Integer>();
         ArrayList<Integer> uzyteGeny2 = new ArrayList<Integer>();
         //wyznaczanie indeksu pocżatkowego i końcowego
+        int nieDoKońcaLosowaLiczba = (int)((Math.random()*dlugoscChromosomu/3))+5;
         int IndexPoczatekowy=(int)(Math.random()*(dlugoscChromosomu/2));
-        int IndexKoncowy=(int)(Math.random()*(dlugoscChromosomu/2))+IndexPoczatekowy;
+        int IndexKoncowy=nieDoKońcaLosowaLiczba+IndexPoczatekowy;//odległośc między indeksami jest mniejsza ale zawsze równa conajmniej 5;
         for (int i = 0; i < geny1.length; i++) {        //przepisywanie w miejscach wzynaczonych przez indexy
             if((i>=IndexPoczatekowy)&&(i<=IndexKoncowy)){
                 noweGeny1[i]=geny2[i];
