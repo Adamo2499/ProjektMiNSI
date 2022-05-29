@@ -4,32 +4,9 @@ import java.util.ArrayList;
 
 public class AE {
     //wszystko co związane z tworzeniem i zarządzaniem chromosomami (Czyli algorytm ewolucyjny)
-
-
-    //Adnotacja: Tworzenie nowej populacji (krzyżowanie, ruletka, mutacje itp)
-
-    //W przypadku np krzyżowania chcemy stworzyć nową populację w oparciu o starą
-    //W tym przypadku najpierw trzeba przepisać starą populację na inny array i wyczyścić array w chromosomie, aby zrobić miejsce dla nowej populacji
-    //Można wymyślić inne rozwiązanie, ale zaletą tego jest fakt że po wykonaniu funkcji operującej na populacji nie tworzymy nowych zmiennych(poza funkcją)
-    
-    //tj w kodzie to wygląda mniej więcej tak:
-
-    //public static ArrayList<Chromosom> StaraPopulacja = Chromosom.populacja;
-    //Chromosom.populacja.clear();
-    
-    //for(i=0;i<StaraPopulacja.size();i++){
-    //  int[] NoweGeny= new int[StaraPopulacja.get(0).geny.length];
-    //  operacje na chromosomie
-    //  new Chromosom(NoweGeny); <--- można stworzyć nowy chromosom podając jako argument tablicę genów 
-    //                                z  racji na fakt jak napisany jest konstruktor nowy chromosom jest automatycznie wpisywany do populacji 
-    //                                i natychmiastowo obliczane jest jego przystosowanie
-    //}
-
-
-
-    public static void GenerujLosowaPopulację(int wielkoscPopulacji, int iloscGenow){//funkcja tworzy nową losową populację 
+    public static void GenerujLosowaPopulację(int wielkoscPopulacji){//funkcja tworzy nową losową populację 
         for (int i = 0; i < wielkoscPopulacji; i++) {
-            new Chromosom(iloscGenow);         
+            new Chromosom();         
         }
     }
 
@@ -53,12 +30,7 @@ public class AE {
         System.out.println("Optimum funkcji: "+WyznaczOptimumPopulacji());
     }
 
-
-
-
-
     public static void KrzyzujChromosomy(Chromosom chromosom1, Chromosom chromosom2){
-        
         int dlugoscChromosomu=chromosom1.geny.length;
         int[] geny1=chromosom1.geny;
         int[] geny2=chromosom2.geny;
@@ -66,13 +38,10 @@ public class AE {
         int[] noweGeny2= new int[geny2.length];
         ArrayList<Integer> uzyteGeny1 = new ArrayList<Integer>();
         ArrayList<Integer> uzyteGeny2 = new ArrayList<Integer>();
-
         //wyznaczanie indeksu pocżatkowego i końcowego
         int IndexPoczatekowy=(int)(Math.random()*(dlugoscChromosomu/2));
         int IndexKoncowy=(int)(Math.random()*(dlugoscChromosomu/2))+IndexPoczatekowy;
-        System.out.println("Początek: "+IndexPoczatekowy+" Koniec: "+IndexKoncowy);// debug 
-        //przepisywanie
-        for (int i = 0; i < geny1.length; i++) {
+        for (int i = 0; i < geny1.length; i++) {        //przepisywanie w miejscach wzynaczonych przez indexy
             if((i>=IndexPoczatekowy)&&(i<=IndexKoncowy)){
                 noweGeny1[i]=geny2[i];
                 uzyteGeny1.add(geny2[i]);
@@ -80,36 +49,48 @@ public class AE {
                 uzyteGeny2.add(geny1[i]);
             }
         }
-        //uzupełnianie
-        for (int i = 0; i < geny1.length; i++) {
+        for (int i = 0; i < geny1.length; i++) {//pierwsze przepisywanie poza miejscami wzynaczanymi przez indexy
             if((i>=IndexPoczatekowy)&&(i<=IndexKoncowy)){
-            }else{
-                //jeżeli liczba nie występuje na liście liczb użytych to jest wpisywana
-                //jeżeli liczba występuje na liście użytych liczb sprawdzamy odpowiadającą jej liczbę a potem sprawdzamy czy ta znajduje się na liście liczb użytych 
-                //jeżeli tak to sprawdzamy odpowiadającą jej liczbę
-                if(!uzyteGeny1.contains(geny1[i])){
+            }else{   
+                if(!uzyteGeny1.contains(geny1[i])){//pierwszy chromosom
                     noweGeny1[i]=geny1[i];
                     uzyteGeny1.add(geny1[i]);
-                }else{
-                   // if (!uzyteGeny1.contains(geny2[i])) {
-                        
-                   // }
-
+                }else{//drugie przepisywanie liczb z dopasowania
+                    int propozycja=geny1[i];
+                    while(uzyteGeny1.contains(propozycja)){
+                        propozycja=FindPMXMatch(geny1, geny2, propozycja);
+                    }
+                    noweGeny1[i]=propozycja;
+                    uzyteGeny1.add(propozycja);
                 }
-                if(!uzyteGeny2.contains(geny2[i])){
+                if(!uzyteGeny2.contains(geny2[i])){//zły brat bliźniak
                     noweGeny2[i]=geny2[i];
                     uzyteGeny2.add(geny2[i]);
-                }else{
-
+                }else{//drugie przepisywanie liczb z dopasowania
+                    int propozycja=geny2[i];
+                    while(uzyteGeny2.contains(propozycja)){
+                        propozycja=FindPMXMatch(geny2, geny1, propozycja);
+                    }
+                    noweGeny2[i]=propozycja;
+                    uzyteGeny2.add(propozycja);
                 }
             } 
         }
-
-        new Chromosom(noweGeny1);
+        new Chromosom(noweGeny1);// dodawanie 2 nowych chromosomów do populacji
         new Chromosom(noweGeny2);
-
-        //WypiszInfoOPopulacji(); debug
     }
+    static int FindPMXMatch(int[] tablica1, int[] tablica2, int value){//funkcja pomocnicza do szukania matchy w PMX
+        int returnValue=0;
+        for (int j = 0; j < tablica2.length; j++) {
+            if (value==tablica2[j]) {
+                    returnValue=tablica1[j];
+                    break;
+            }
+        }
+        return returnValue;
+    }
+
+
 
     //gen = miasto
     //Chromosom = droga do celu
