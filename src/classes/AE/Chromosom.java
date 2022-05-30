@@ -51,6 +51,14 @@ public class Chromosom {
         przystosowanieChromosomu=wartoscFunkcjiPrzystosowania;
     }
 
+    public double[] wyznaczPrzystosowaniaPopulacji(){
+        double[] przystosowaniaPopulacji = new double[populacja.size()];
+            for (int i = 0; i < przystosowaniaPopulacji.length; i++) {
+                przystosowaniaPopulacji[i] = przystosowanieChromosomu;
+            }
+        return przystosowaniaPopulacji;
+    }
+
     public void DrukujGeny(){// do debugowania XD
         for (int i = 0; i < geny.length; i++) {
             System.out.print(geny[i]+"|");

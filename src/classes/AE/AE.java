@@ -1,6 +1,7 @@
 package classes.AE;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 public class AE {
     //wszystko co związane z tworzeniem i zarządzaniem chromosomami (Czyli algorytm ewolucyjny)
@@ -91,6 +92,40 @@ public class AE {
         return returnValue;
     }
 
+    //mutacja (inwersja)
+    public static void MutujChromosom(Chromosom chromosom) {
+        Random rng = new Random();
+        int[] geny = chromosom.geny;
+        double szansaNaMutacje = 0.25, r;
+        int temp;
+        for (int i = 0; i < geny.length; i++) {
+            r = rng.nextDouble();
+            if(r < szansaNaMutacje){
+                if(i==0 || i == geny.length-1){
+                    temp = geny[0];
+                    geny[0] = geny[geny.length-1];
+                    geny[geny.length-1] = temp;
+                }
+                else {
+                    temp = geny[i];
+                    geny[i] = geny[i++];
+                    geny[i++] = temp;
+                }
+                
+            }
+        }
+    }
+
+        
+
+        // ruletka oparta o wykład, jak będzie inna opcja to usunę
+        public static void GenerujRuletkowo() {
+            AE.GenerujLosowaPopulację(30);
+            Chromosom.populacja.get(0).wyznaczPrzystosowaniaPopulacji();
+            
+    
+    
+        }
 
 
     //gen = miasto
