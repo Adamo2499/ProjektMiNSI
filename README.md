@@ -8,7 +8,7 @@ The workspace contains two folders by default, where:
 
 - `src`: kod
 - `bin`: pliki binary
-- `pdf`: instrukcja w pdf
+- `docs`: instrukcje w pdf + pliki do sprawozdania (formularz osobisty i wykres Gantta)
 - `.vscode`: ustawienia VSC
 
 
