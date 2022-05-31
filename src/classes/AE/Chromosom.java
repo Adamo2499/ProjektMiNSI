@@ -46,8 +46,9 @@ public class Chromosom {
         // Jednak w przypadku w którym modyfikujemy zestaw genów bez tworzenia nowego chromosomu będzie trzeba pamiętać aby tą funkcję wywołać 
         double wartoscFunkcjiPrzystosowania = 0.0;
         for (int i = 1; i < geny.length; i++) {
-            wartoscFunkcjiPrzystosowania=Miasta.ODLEGLOSCI[geny[i-1]][geny[i]]; 
+            wartoscFunkcjiPrzystosowania=Miasta.ODLEGLOSCI[geny[i-1]][geny[i]]+wartoscFunkcjiPrzystosowania; 
         }
+        wartoscFunkcjiPrzystosowania=wartoscFunkcjiPrzystosowania+Miasta.ODLEGLOSCI[geny[0]][geny[geny.length-1]];
         przystosowanieChromosomu=wartoscFunkcjiPrzystosowania;
     }
 
