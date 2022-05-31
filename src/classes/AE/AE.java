@@ -5,6 +5,8 @@ import java.util.Random;
 
 public class AE {
     Random rng = new Random();
+
+
     //wszystko co związane z tworzeniem i zarządzaniem chromosomami (Czyli algorytm ewolucyjny)
     public static void GenerujLosowaPopulację(int wielkoscPopulacji){//funkcja tworzy nową losową populację 
         for (int i = 0; i < wielkoscPopulacji; i++) {
@@ -31,6 +33,25 @@ public class AE {
         }
         System.out.println("Optimum funkcji: "+WyznaczOptimumPopulacji());
     }
+
+    public static void SelekcjaRankingowa(int KoncowawielkoscPopulacji){
+        //tak to jest sortownaie bąbelkowe XD
+        Chromosom temp;
+        for (int i = 0; i < Chromosom.populacja.size(); i++) {
+            for (int j = 1; j < Chromosom.populacja.size(); j++) {
+                if (Chromosom.populacja.get(j-1).przystosowanieChromosomu>Chromosom.populacja.get(j).przystosowanieChromosomu) {
+                    temp=Chromosom.populacja.get(j-1);
+                    Chromosom.populacja.set(j, Chromosom.populacja.get(j-1));
+                    Chromosom.populacja.set(j-1, temp);
+                }
+            }
+        }
+
+        while(Chromosom.populacja.size()>KoncowawielkoscPopulacji){
+            Chromosom.populacja.remove(Chromosom.populacja.size()-1);
+        }
+    }
+
 
     public static void KrzyzujChromosomy(Chromosom chromosom1, Chromosom chromosom2){
         int dlugoscChromosomu=chromosom1.geny.length;
