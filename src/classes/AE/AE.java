@@ -114,6 +114,8 @@ public class AE {
                 }
             }
         }
+        chromosom.geny=geny;
+        chromosom.WyznaczPrzystosowanieChromosomu();
     }
 
     private static double wyznaczSumePrzystosowan() {// wywaliłem argument funkcji. Nie trzeba przekazywać listy jako argument skoro można się do niej bezpośrednio odnieść
