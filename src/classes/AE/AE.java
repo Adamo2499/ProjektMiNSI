@@ -93,7 +93,7 @@ public class AE {
         return returnValue;
     }
 
-    //mutacja (inwersja)
+    //mutacja (inwersja) //inwersja to zamiana 2 sąsiadujących mutacja 2 w losowych miejscach
     public static void MutujChromosom(Chromosom chromosom) {
         Random rng = new Random();
         int[] geny = chromosom.geny;
@@ -112,18 +112,17 @@ public class AE {
                     geny[i] = geny[i++];
                     geny[i++] = temp;
                 }
-                
             }
         }
     }
 
-        private static double wyznaczSumePrzystosowan(ArrayList populacja) {
-            double sumaPrzystosowan = 0.0;
-            for (int i = 0; i < populacja.size(); i++) {
-                sumaPrzystosowan += Chromosom.populacja.get(i).przystosowanieChromosomu;
-            }
-            return sumaPrzystosowan;
+    private static double wyznaczSumePrzystosowan() {// wywaliłem argument funkcji. Nie trzeba przekazywać listy jako argument skoro można się do niej bezpośrednio odnieść
+        double sumaPrzystosowan = 0.0;
+        for (int i = 0; i < Chromosom.populacja.size(); i++) {
+            sumaPrzystosowan += Chromosom.populacja.get(i).przystosowanieChromosomu;
         }
+        return sumaPrzystosowan;
+    }
         
 
         // ruletka oparta o wykład, jak będzie inna opcja to usunę
@@ -138,7 +137,7 @@ public class AE {
     
     
         // }
-        private static double wyznaczSumeWartosciFunkcji(ArrayList populacja){
+        private static double wyznaczSumeWartosciFunkcji(){
             
             double[] wyniki = Chromosom.populacja.get(0).wyznaczPrzystosowaniaPopulacji();
             double sumaWynikowFunkcji = wyniki[0];
@@ -147,9 +146,9 @@ public class AE {
             }
             return sumaWynikowFunkcji;
         }
-        private static double[] wyznaczStosunkiWynikowDoSumy(ArrayList populacja){
-            double[] wyniki = Chromosom.populacja.get(0).wyznaczPrzystosowaniaPopulacji(), stosunkiWynikowDoSumy = new double[populacja.size()];
-            double suma = wyznaczSumeWartosciFunkcji(populacja);
+        private static double[] wyznaczStosunkiWynikowDoSumy(){
+            double[] wyniki = Chromosom.populacja.get(0).wyznaczPrzystosowaniaPopulacji(), stosunkiWynikowDoSumy = new double[Chromosom.populacja.size()];
+            double suma = wyznaczSumeWartosciFunkcji();
             for(int i=0;i<stosunkiWynikowDoSumy.length;i++){
                 stosunkiWynikowDoSumy[i] = wyniki[i] / suma;
             }
@@ -166,12 +165,12 @@ public class AE {
         //     return podzialKola;
         // }
     
-        private static int[] wyznaczLiczbeKopiiChromosomu (ArrayList populacja){
+        private static int[] wyznaczLiczbeKopiiChromosomu (){
             Random rng = new Random();
-            int[] liczbaKopii = new int[populacja.size()];
+            int[] liczbaKopii = new int[Chromosom.populacja.size()];
             double randomowaWartosc = 0.0;
-            double[] stosunkiWynikowDoSumy = wyznaczStosunkiWynikowDoSumy(populacja);
-            for (int i = 0; i < populacja.size(); i++) {
+            double[] stosunkiWynikowDoSumy = wyznaczStosunkiWynikowDoSumy();
+            for (int i = 0; i < Chromosom.populacja.size(); i++) {
                 randomowaWartosc = rng.nextDouble();
                 if(randomowaWartosc >= stosunkiWynikowDoSumy[i]){
                     liczbaKopii[i]++;
@@ -183,36 +182,36 @@ public class AE {
             return liczbaKopii;
         }
     
-        private static int wybierzPartneraDoKrzyzowania(ArrayList populacja){
+        private static int wybierzPartneraDoKrzyzowania(){
             Random rng = new Random();
-            return rng.nextInt((populacja.size() - 1) + 1) + 1;
+            return rng.nextInt((Chromosom.populacja.size() - 1) + 1) + 1;
         }
     
-        public static void reprodukujRuletkowo(){
-            ArrayList<Chromosom> popX = Chromosom.populacja;
-            final int N = 30;
-            ArrayList<Chromosom> populacjaT = new ArrayList<>(N);
-            ArrayList<Chromosom> populacja2 = new ArrayList<>(N);
-            int indeksPartnera = 0;
-            for (int i = 0; i < populacjaT.size(); i++) {
-                populacjaT.add(new Chromosom());
-                populacja2.add(new Chromosom());
-            }
-            int[] ilosc = wyznaczLiczbeKopiiChromosomu(popX);
-                for (int i = 0; i < popX.size(); i++) {
-                    for (int j = 0; j < ilosc[j]; j++) {
-                        populacjaT.set(i, popX.get(i));
-                    }
-                    indeksPartnera = wybierzPartneraDoKrzyzowania(popX);
-                if(indeksPartnera != i){
-                     AE.KrzyzujChromosomy(popX.get(i), populacjaT.get(indeksPartnera));
-                }
-                else {
-                    indeksPartnera = wybierzPartneraDoKrzyzowania(populacjaT);
-                }
-                KrzyzujChromosomy(populacja2.get(i), populacja2.get(indeksPartnera));
-            }
-        }
+        // public static void reprodukujRuletkowo(){
+        //     ArrayList<Chromosom> popX = Chromosom.populacja;
+        //     final int N = 30;
+        //     ArrayList<Chromosom> populacjaT = new ArrayList<>(N);
+        //     ArrayList<Chromosom> populacja2 = new ArrayList<>(N);
+        //     int indeksPartnera = 0;
+        //     for (int i = 0; i < populacjaT.size(); i++) {
+        //         populacjaT.add(new Chromosom());
+        //         populacja2.add(new Chromosom());
+        //     }
+        //     int[] ilosc = wyznaczLiczbeKopiiChromosomu(popX);
+        //         for (int i = 0; i < popX.size(); i++) {
+        //             for (int j = 0; j < ilosc[j]; j++) {
+        //                 populacjaT.set(i, popX.get(i));
+        //             }
+        //             indeksPartnera = wybierzPartneraDoKrzyzowania(popX);
+        //         if(indeksPartnera != i){
+        //              AE.KrzyzujChromosomy(popX.get(i), populacjaT.get(indeksPartnera));
+        //         }
+        //         else {
+        //             indeksPartnera = wybierzPartneraDoKrzyzowania(populacjaT);
+        //         }
+        //         KrzyzujChromosomy(populacja2.get(i), populacja2.get(indeksPartnera));
+        //     }
+        // }
 
 
     //gen = miasto

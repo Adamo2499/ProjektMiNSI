@@ -14,13 +14,16 @@ public class Main {
         //AE.WypiszInfoOPopulacji();
         
         //debug PMX
-        AE.GenerujLosowaPopulację(2);
+        AE.GenerujLosowaPopulację(20);
         AE.KrzyzujChromosomy(Chromosom.populacja.get(0), Chromosom.populacja.get(1));
         AE.WypiszInfoOPopulacji();
         Chromosom.populacja.get(0).DrukujGeny();
         Chromosom.populacja.get(1).DrukujGeny();
         Chromosom.populacja.get(2).DrukujGeny();
         Chromosom.populacja.get(3).DrukujGeny();
+
+
+        
 
         // System.out.println("Geny przed mutacją: ");
         // Chromosom.populacja.get(0).DrukujGeny();

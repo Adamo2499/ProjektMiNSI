@@ -12,7 +12,7 @@ public class Chromosom {
     public static ArrayList<Chromosom> populacja = new ArrayList<Chromosom>();
 
     public Chromosom(){//konstruktor chromosomu wykorzystujący ilosc genów jako argument
-        this.geny = GenerowanieGenow(30);// jest 30 miast więc ilośc genów to zawsze będzie 30
+        this.geny = GenerowanieGenow(Miasta.MIASTA.length);// jest 30 miast więc ilośc genów to zawsze będzie 30
         this.WyznaczPrzystosowanieChromosomu(); //chromosom zaraz po poznaniu swojego zestawu genów jest w stanie wyznaczyć swoje przystosowanie więc to robi
         populacja.add(this);
     }
@@ -41,9 +41,6 @@ public class Chromosom {
     }
 
     void WyznaczPrzystosowanieChromosomu(){//przeniosłem z AE 
-        // Chromosom zaraz po tym jak "pozna swój zestaw genów" w sumie może określić swoje przystosowanie
-        // Dlatego wyznacznaie przystosowania znajduje się już w konstruktorze
-        // Jednak w przypadku w którym modyfikujemy zestaw genów bez tworzenia nowego chromosomu będzie trzeba pamiętać aby tą funkcję wywołać 
         double wartoscFunkcjiPrzystosowania = 0.0;
         for (int i = 1; i < geny.length; i++) {
             wartoscFunkcjiPrzystosowania=Miasta.ODLEGLOSCI[geny[i-1]][geny[i]]+wartoscFunkcjiPrzystosowania; 
