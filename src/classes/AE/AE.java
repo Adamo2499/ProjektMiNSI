@@ -29,7 +29,7 @@ public class AE {
         System.out.println("Wielkość populacji: "+Chromosom.populacja.size());
         System.out.println("Nr osobnika i wartość funkcji przystosowania:");
         for (int i = 0; i < Chromosom.populacja.size(); i++) {
-            System.out.println("Osobnik nr "+i+"    Przystosowanie: "+ String.format("%.5f", Chromosom.populacja.get(i).przystosowanieChromosomu));
+            System.out.println("Osobnik nr "+(i+1)+"    Przystosowanie: "+ String.format("%.5f", Chromosom.populacja.get(i).przystosowanieChromosomu));
         }
         System.out.println("Optimum funkcji: "+WyznaczOptimumPopulacji());
     }
@@ -114,38 +114,29 @@ public class AE {
         return returnValue;
     }
 
-    //mutacja (inwersja) //inwersja to zamiana 2 sąsiadujących mutacja 2 w losowych miejscach
+    //mutacja (inwersja) // inwersja to zamiana 2 sąsiadujących mutacja 2 w losowych miejscach
     public static void MutujChromosom(Chromosom chromosom) {
         Random rng = new Random();
         int[] geny = chromosom.geny;
-        double szansaNaMutacje = 0.25, r;
-        int temp;
+        double szansaNaMutacje = 0.1, r;
+        int temp, pierwszyGen, drugiGen;
         for (int i = 0; i < geny.length; i++) {
             r = rng.nextDouble();
             if(r < szansaNaMutacje){
-                if(i==0 || i == geny.length-1){
-                    temp = geny[0];
-                    geny[0] = geny[geny.length-1];
-                    geny[geny.length-1] = temp;
+                do {
+                pierwszyGen = rng.nextInt(geny.length);
+                drugiGen = rng.nextInt(geny.length);
                 }
-                else {
-                    temp = geny[i];
-                    geny[i] = geny[i++];
-                    geny[i++] = temp;
-                }
+                while (pierwszyGen == drugiGen);
+                temp = geny[pierwszyGen];
+                geny[pierwszyGen] = geny[drugiGen];
+                geny[drugiGen] = temp;
             }
         }
         chromosom.geny=geny;
         chromosom.WyznaczPrzystosowanieChromosomu();
     }
 
-    private static double wyznaczSumePrzystosowan() {// wywaliłem argument funkcji. Nie trzeba przekazywać listy jako argument skoro można się do niej bezpośrednio odnieść
-        double sumaPrzystosowan = 0.0;
-        for (int i = 0; i < Chromosom.populacja.size(); i++) {
-            sumaPrzystosowan += Chromosom.populacja.get(i).przystosowanieChromosomu;
-        }
-        return sumaPrzystosowan;
-    }
         
 
         // ruletka oparta o wykład, jak będzie inna opcja to usunę
@@ -160,55 +151,8 @@ public class AE {
     
     
         // }
-        private static double wyznaczSumeWartosciFunkcji(){
-            
-            double[] wyniki = Chromosom.populacja.get(0).wyznaczPrzystosowaniaPopulacji();
-            double sumaWynikowFunkcji = wyniki[0];
-            for (int i = 0; i < wyniki.length; i++) {
-                sumaWynikowFunkcji += wyniki[i];
-            }
-            return sumaWynikowFunkcji;
-        }
-        private static double[] wyznaczStosunkiWynikowDoSumy(){
-            double[] wyniki = Chromosom.populacja.get(0).wyznaczPrzystosowaniaPopulacji(), stosunkiWynikowDoSumy = new double[Chromosom.populacja.size()];
-            double suma = wyznaczSumeWartosciFunkcji();
-            for(int i=0;i<stosunkiWynikowDoSumy.length;i++){
-                stosunkiWynikowDoSumy[i] = wyniki[i] / suma;
-            }
-            return stosunkiWynikowDoSumy;
-        }
+
     
-        // private double[] wyznaczPodzialyKola(ArrayList populacja){
-        //     double[] podzialKola = new double[populacja.size()-1], stosunkiWynikowDoSumy = wyznaczStosunkiWynikowDoSumy(populacja);
-        //     for(int i=0;i<podzialKola.length;i++){
-        //         for(int j=0;j<=i;j++){
-        //             podzialKola[i] += stosunkiWynikowDoSumy[j];
-        //         }
-        //     }
-        //     return podzialKola;
-        // }
-    
-        private static int[] wyznaczLiczbeKopiiChromosomu (){
-            Random rng = new Random();
-            int[] liczbaKopii = new int[Chromosom.populacja.size()];
-            double randomowaWartosc = 0.0;
-            double[] stosunkiWynikowDoSumy = wyznaczStosunkiWynikowDoSumy();
-            for (int i = 0; i < Chromosom.populacja.size(); i++) {
-                randomowaWartosc = rng.nextDouble();
-                if(randomowaWartosc >= stosunkiWynikowDoSumy[i]){
-                    liczbaKopii[i]++;
-                }
-                else {
-                    continue;
-                }
-            }
-            return liczbaKopii;
-        }
-    
-        private static int wybierzPartneraDoKrzyzowania(){
-            Random rng = new Random();
-            return rng.nextInt((Chromosom.populacja.size() - 1) + 1) + 1;
-        }
     
         // public static void reprodukujRuletkowo(){
         //     ArrayList<Chromosom> popX = Chromosom.populacja;

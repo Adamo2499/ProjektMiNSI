@@ -1,3 +1,4 @@
+import classes.Miasta;
 import classes.AE.AE;
 import classes.AE.Chromosom;
 
@@ -13,9 +14,10 @@ public class Main {
 
 
         AE.GenerujLosowaPopulację(rozmiarPopulacji);
+        System.out.println("Ilość miast: "+Miasta.MIASTA.length);
         for (int i = 0; i < iloscPowtorzenAlgorytmu; i++) {
 
-            System.out.println("Krzyżowanie");//debug
+            System.out.println("Krzyżowanie nr: "+(i+1));//debug
             for (int j = 0; j < rozmiarPopulacji; j++) {
                 if (Math.random()<szansaNaKrzyżowanie) {
                     AE.KrzyzujChromosomy(Chromosom.populacja.get(j), Chromosom.populacja.get((int)(Chromosom.populacja.size()*Math.random())));
@@ -23,7 +25,7 @@ public class Main {
             }
             //AE.WypiszInfoOPopulacji();
 
-            System.out.println("Mutacja");//debug
+            System.out.println("Mutacja nr: "+(i+1));//debug
             for (int j = 0; j < Chromosom.populacja.size(); j++) {
                 if (Math.random()<szansaNaMutacje) {
                    AE.MutujChromosom(Chromosom.populacja.get(j));//mutacja zdaje się zawieszać po 3 uruchomieniachg algorytmu
@@ -31,7 +33,7 @@ public class Main {
             }
             //AE.WypiszInfoOPopulacji();
 
-            System.out.println("Selekcja");//debug
+            System.out.println("Selekcja nr: "+(i+1));//debug
             AE.SelekcjaRankingowa(rozmiarPopulacji);
 
         }
