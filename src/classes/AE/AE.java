@@ -1,7 +1,10 @@
 package classes.AE;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Random;
+
+import classes.Pliki;
 
 public class AE {
     Random rng = new Random();
@@ -114,6 +117,8 @@ public class AE {
         return returnValue;
     }
 
+
+
     //mutacja (inwersja) // inwersja to zamiana 2 sąsiadujących mutacja 2 w losowych miejscach
     public static void MutujChromosom(Chromosom chromosom) {
         Random rng = new Random();
@@ -135,6 +140,14 @@ public class AE {
         }
         chromosom.geny=geny;
         chromosom.WyznaczPrzystosowanieChromosomu();
+    }
+
+    public static void przekazDaneDoPliku() throws IOException {
+        String dane = "";
+        for (int i = 0; i < Chromosom.populacja.size(); i++) {
+            dane += Chromosom.populacja.get(i).przystosowanieChromosomu+" "+String.format("%.3f", AE.WyznaczOptimumPopulacji())+"\r\n";
+        }
+        Pliki.zapiszPlikWynikowy(dane);
     }
 
         

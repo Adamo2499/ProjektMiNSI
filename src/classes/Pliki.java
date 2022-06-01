@@ -24,8 +24,10 @@ public class Pliki {
     }
 
     public static void zapiszPlikWynikowy(String napisDoDopisania) throws IOException{
+        System.out.println("Rozpoczynam zapisywanie do pliku...");
         File wyniki = new File("wyniki.txt");
         FileWriter zapiszPlik = new FileWriter(wyniki);
+        zapiszPlik.write("current best_current \r\n");
         zapiszPlik.append(napisDoDopisania);
         zapiszPlik.close();
         System.out.println("Zapisano plik!");

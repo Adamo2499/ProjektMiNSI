@@ -1,4 +1,5 @@
 import classes.Miasta;
+import classes.Pliki;
 import classes.AE.AE;
 import classes.AE.Chromosom;
 
@@ -38,6 +39,7 @@ public class Main {
 
         }
         AE.WypiszInfoOPopulacji();
+        AE.przekazDaneDoPliku();
 
     }
 }
