@@ -2,6 +2,7 @@ package classes.AE;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Random;
 
 import classes.Pliki;
@@ -39,13 +40,10 @@ public class AE {
 
     public static void SelekcjaRankingowa(int KoncowawielkoscPopulacji){
         //tak to jest sortownaie bąbelkowe XD
-        Chromosom temp;
         for (int i = 0; i < Chromosom.populacja.size(); i++) {
             for (int j = 1; j < Chromosom.populacja.size(); j++) {
                 if (Chromosom.populacja.get(j-1).przystosowanieChromosomu>Chromosom.populacja.get(j).przystosowanieChromosomu) {
-                    temp=Chromosom.populacja.get(j-1);
-                    Chromosom.populacja.set(j, Chromosom.populacja.get(j-1));
-                    Chromosom.populacja.set(j-1, temp);
+                    Collections.swap(Chromosom.populacja, j-1, j);
                 }
             }
         }
