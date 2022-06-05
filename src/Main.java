@@ -10,9 +10,11 @@ public class Main {
         System.out.println("\033[H\033[2J");// to coś czyści konsolę 
         double szansaNaMutacje=0.3;
         double szansaNaKrzyżowanie=0.4;
-        int rozmiarPopulacji=10;
+        int rozmiarPopulacji=20;
         int iloscPowtorzenAlgorytmu=100;
         int nieDoKońcaLosowaLiczba;
+        double bestGlobal = 10000, bestCurrent = 10000;
+        String dane = "";
 
         AE.GenerujLosowaPopulację(rozmiarPopulacji);
         System.out.println("Ilość miast: "+Miasta.MIASTA.length);
@@ -27,6 +29,7 @@ public class Main {
 
                     AE.KrzyzujChromosomy(Chromosom.populacja.get(j), Chromosom.populacja.get(nieDoKońcaLosowaLiczba));
                 }
+               
             }
             //AE.WypiszInfoOPopulacji();
 
@@ -36,14 +39,27 @@ public class Main {
                    AE.MutujChromosom(Chromosom.populacja.get(j));//mutacja zdaje się zawieszać po 3 uruchomieniachg algorytmu
                 }
             }
+            for (int j = 0; j <rozmiarPopulacji; j++) {
+                Chromosom chr = Chromosom.populacja.get(j);
+                dane +=  String.format("%.3f", chr.przystosowanieChromosomu)+" "+String.format("%.3f", bestCurrent)+" "+String.format("%.3f", bestGlobal)+"\r\n";    
+            }
+            
+            bestCurrent = AE.WyznaczOptimumPopulacji();
+            if(bestCurrent < bestGlobal){
+                bestGlobal = bestCurrent;
+            }
+            
+            
 
             //System.out.println("\nSelekcja nr: "+(i+1));//debug
             AE.SelekcjaRankingowa(rozmiarPopulacji);
             //AE.WypiszInfoOPopulacji();
-
+           
         }
+        
         AE.WypiszInfoOPopulacji();
-        AE.przekazDaneDoPliku();
+
+        Pliki.zapiszPlikWynikowy(dane);
 
     }
 }

@@ -140,14 +140,6 @@ public class AE {
         chromosom.WyznaczPrzystosowanieChromosomu();
     }
 
-    public static void przekazDaneDoPliku() throws IOException {
-        String dane = "";
-        for (int i = 0; i < Chromosom.populacja.size(); i++) {
-            dane += Chromosom.populacja.get(i).przystosowanieChromosomu+" "+String.format("%.3f", AE.WyznaczOptimumPopulacji())+"\r\n";
-        }
-        Pliki.zapiszPlikWynikowy(dane);
-    }
-
         
 
         // ruletka oparta o wykład, jak będzie inna opcja to usunę
