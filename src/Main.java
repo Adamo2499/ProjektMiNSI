@@ -34,19 +34,19 @@ public class Main {
             //AE.WypiszInfoOPopulacji();
 
             //System.out.println("\nMutacja nr: "+(i+1));//debug
-            for (int j = 0; j < Chromosom.populacja.size(); j++) {
+            for (int j = 0; j < rozmiarPopulacji; j++) {
                 if (Math.random()<szansaNaMutacje) {
                    AE.MutujChromosom(Chromosom.populacja.get(j));//mutacja zdaje się zawieszać po 3 uruchomieniachg algorytmu
                 }
-            }
-            for (int j = 0; j <rozmiarPopulacji; j++) {
-                Chromosom chr = Chromosom.populacja.get(j);
-                dane +=  String.format("%.3f", chr.przystosowanieChromosomu)+" "+String.format("%.3f", bestCurrent)+" "+String.format("%.3f", bestGlobal)+"\r\n";    
             }
             
             bestCurrent = AE.WyznaczOptimumPopulacji();
             if(bestCurrent < bestGlobal){
                 bestGlobal = bestCurrent;
+            }
+            for (int j = 0; j < rozmiarPopulacji; j++) {
+                Chromosom chr = Chromosom.populacja.get(j);
+                dane +=  String.format("%.3f", chr.przystosowanieChromosomu)+" "+String.format("%.3f", bestCurrent)+" "+String.format("%.3f", bestGlobal)+"\r\n";    
             }
             
             
