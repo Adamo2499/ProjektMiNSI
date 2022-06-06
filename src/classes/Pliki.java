@@ -27,7 +27,7 @@ public class Pliki {
         System.out.println("Rozpoczynam zapisywanie do pliku...");
         File wyniki = new File("wyniki.txt");
         FileWriter zapiszPlik = new FileWriter(wyniki);
-        zapiszPlik.write("current best_current best_global\r\n");
+        zapiszPlik.write("nrOsobnika current best_current best_global\r\n");
         zapiszPlik.append(napisDoDopisania);
         zapiszPlik.close();
         System.out.println("Zapisano plik!");

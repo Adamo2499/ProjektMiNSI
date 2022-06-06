@@ -4,7 +4,7 @@ public class Miasta {
     //model na którym operuje algorytm
 
     //----------------------30 miast----------------------
-    /*
+/*
     final public static String[] MIASTA = 
     {"Gdańsk",	"Warszawa",	"Poznań",	"Wrocław",	"Kraków",	"Gdynia",	"Sopot",	"Radom",	"Grudziądz",	"Toruń",	"Bydgoszcz",	"Katowice",	"Lublin",	"Łódź",	"Białystok",	"Olsztyn",	"Szczecin",	"Rzeszów",	"Kielce",	"Zakopane",	"Kołobrzeg",	"Łomża",	"Kalisz",	"Nowy Sącz",	"Przemyśl",	"Piła",	"Opole",	"Gniezno",	"Giżycko", "Ostróda"};
     final public static double[][] ODLEGLOSCI= { 
@@ -40,10 +40,9 @@ public class Miasta {
         {113.801,	177.851,	249.624,	350.708,	404.829,	129.549,	123.825,	266.721,	83.298, 	118.641,	145.216,	393.441,	327.293,	217.058,	221.078,	34.846, 	355.815,	433.767,	319.794,	489.886,	291.831,	149.973,	251.687,	457.984,	477.135,	222.260,	363.636,	205.084,	123.892,	 0}
 
     };
-    //*/
-
+ */
     //----------------------20 miast----------------------
-    //*
+   
     final public static String[] MIASTA = 
     {"Bydgoszcz",	"Katowice",	"Lublin",	"Łódź",	"Białystok",	"Olsztyn",	"Szczecin",	"Rzeszów",	"Kielce",	"Zakopane",	"Kołobrzeg",	"Łomża",	"Kalisz",	"Nowy Sącz",	"Przemyśl",	"Piła",	"Opole",	"Gniezno",	"Giżycko", "Ostróda"};
     final public static double[][] ODLEGLOSCI= { 
@@ -69,7 +68,6 @@ public class Miasta {
         {145.216,	393.441,	327.293,	217.058,	221.078,	34.846, 	355.815,	433.767,	319.794,	489.886,	291.831,	149.973,	251.687,	457.984,	477.135,	222.260,	363.636,	205.084,	123.892,	 0}
 
     };
-    //*/
     public static void DrukujOdleglosciMIASTA(){// do debugowania
         for (int i = 0; i < ODLEGLOSCI.length-1; i++) {
             for (int j = 0; j < ODLEGLOSCI[0].length-1; j++) {

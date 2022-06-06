@@ -140,49 +140,14 @@ public class AE {
         chromosom.WyznaczPrzystosowanieChromosomu();
     }
 
-        
-
-        // ruletka oparta o wykład, jak będzie inna opcja to usunę
-        // public static void GenerujRuletkowo() {
-        //     AE.GenerujLosowaPopulację(30);
-        //     Chromosom.populacja.get(0).wyznaczPrzystosowaniaPopulacji();
-        //     double suma = wyznaczSumePrzystosowan();
-        //     for (int i = 0; i < populacja.size(); i++) {
-                
-        //     }
-            
-    
-    
-        // }
-
-    
-    
-        // public static void reprodukujRuletkowo(){
-        //     ArrayList<Chromosom> popX = Chromosom.populacja;
-        //     final int N = 30;
-        //     ArrayList<Chromosom> populacjaT = new ArrayList<>(N);
-        //     ArrayList<Chromosom> populacja2 = new ArrayList<>(N);
-        //     int indeksPartnera = 0;
-        //     for (int i = 0; i < populacjaT.size(); i++) {
-        //         populacjaT.add(new Chromosom());
-        //         populacja2.add(new Chromosom());
-        //     }
-        //     int[] ilosc = wyznaczLiczbeKopiiChromosomu(popX);
-        //         for (int i = 0; i < popX.size(); i++) {
-        //             for (int j = 0; j < ilosc[j]; j++) {
-        //                 populacjaT.set(i, popX.get(i));
-        //             }
-        //             indeksPartnera = wybierzPartneraDoKrzyzowania(popX);
-        //         if(indeksPartnera != i){
-        //              AE.KrzyzujChromosomy(popX.get(i), populacjaT.get(indeksPartnera));
-        //         }
-        //         else {
-        //             indeksPartnera = wybierzPartneraDoKrzyzowania(populacjaT);
-        //         }
-        //         KrzyzujChromosomy(populacja2.get(i), populacja2.get(indeksPartnera));
-        //     }
-        // }
-
+    public static double wyznaczSredniePrzystosowaniePopulacji() {
+        double sredniePrzystosowanie, sumaPrzystosowan = 0.0;
+        for (int i = 0; i < Chromosom.populacja.size(); i++) {
+            sumaPrzystosowan += Chromosom.populacja.get(i).przystosowanieChromosomu;
+        }
+        sredniePrzystosowanie = sumaPrzystosowan / Chromosom.populacja.size();
+        return sredniePrzystosowanie;
+    }
 
     //gen = miasto
     //Chromosom = droga do celu
