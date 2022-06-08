@@ -23,9 +23,18 @@ public class Pliki {
         odczytajPlik.close();
     }
 
-    public static void zapiszPlikWynikowy(String napisDoDopisania) throws IOException{
+    public static void zapiszPlikWynikowy(String napisDoDopisania, int iloscmiast, int rozmiarPopulacji, int powtorzenie) throws IOException{
         System.out.println("Rozpoczynam zapisywanie do pliku...");
-        File wyniki = new File("wyniki.txt");
+        File wyniki = new File("wyniki\\Miasta["+iloscmiast+"] PopulacjaSize["+rozmiarPopulacji+"] Wynik["+powtorzenie+"].txt");
+        FileWriter zapiszPlik = new FileWriter(wyniki);
+        zapiszPlik.write("nrOsobnika current best_current best_global\r\n");
+        zapiszPlik.append(napisDoDopisania);
+        zapiszPlik.close();
+        System.out.println("Zapisano plik!");
+    }
+    public static void zapiszPlikWynikowySrednia(String napisDoDopisania, int iloscmiast, int rozmiarPopulacji) throws IOException{
+        System.out.println("Rozpoczynam zapisywanie do pliku...");
+        File wyniki = new File("wyniki\\miasta["+iloscmiast+"] PopulacjaSize["+rozmiarPopulacji+"] Srednia.txt");
         FileWriter zapiszPlik = new FileWriter(wyniki);
         zapiszPlik.write("nrOsobnika current best_current best_global\r\n");
         zapiszPlik.append(napisDoDopisania);
