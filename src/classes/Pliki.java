@@ -39,6 +39,6 @@ public class Pliki {
         zapiszPlik.write("nrOsobnika current best_current best_global\r\n");
         zapiszPlik.append(napisDoDopisania);
         zapiszPlik.close();
-        System.out.println("Ukończono :>");
+        System.out.println("Zakończono działanie programu :>");
     }
 }
