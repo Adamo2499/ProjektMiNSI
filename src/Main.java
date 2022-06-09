@@ -10,11 +10,11 @@ public class Main {
         // Całkowita liczba osobników dla 20 miast: 80000
         // Całkowita liczba osobników dla 30 miast: 100000
 
-        System.out.println("\033[H\033[2J");// to coś czyści konsolę
+
         double szansaNaMutacje = 0.05;
         double szansaNaKrzyżowanie = 0.6;
-        int rozmiarPopulacji = 20;
-        int iloscPowtorzenAlgorytmu = 40;
+        int rozmiarPopulacji = 100;
+        int iloscPowtorzenAlgorytmu = 800;
         int iloscUruchomienCalosci = 30;
         int numerOsobnika = 1;
         int nieDoKońcaLosowaLiczba;
@@ -64,6 +64,8 @@ public class Main {
             Chromosom.populacja.clear();
             dane = "";
             numerOsobnika = 1;
+            System.out.println("\033[H\033[2J");// to coś czyści konsolę
+            System.out.println("Ukończono "+(int)(((double)powtorzenie/iloscUruchomienCalosci)*100)+"%");
         }
         for (int i = 0; i < iloscPowtorzenAlgorytmu * rozmiarPopulacji; i++) {
             srednie[0][i] = srednie[0][i]/iloscUruchomienCalosci;
