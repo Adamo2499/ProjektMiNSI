@@ -13,8 +13,8 @@ public class Main {
 
         double szansaNaMutacje = 0.05;
         double szansaNaKrzyżowanie = 0.6;
-        int rozmiarPopulacji = 100;
-        int iloscPowtorzenAlgorytmu = 800;
+        int rozmiarPopulacji = 50;
+        int iloscPowtorzenAlgorytmu = 1600;
         int iloscUruchomienCalosci = 30;
         int numerOsobnika = 1;
         int nieDoKońcaLosowaLiczba;
